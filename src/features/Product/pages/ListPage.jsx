@@ -82,8 +82,6 @@ function ListPage(props) {
     }))
   }
 
-  console.log(filters)
-
   return (
     <Box>
       <Container>

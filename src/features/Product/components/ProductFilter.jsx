@@ -23,7 +23,9 @@ function ProductFilter({ filters, onChange }) {
 
     onChange(newFilters)
   }
-  const handlePriceChange = () => {}
+  const handlePriceChange = (values) => {
+    if (onChange) onChange(values)
+  }
 
   return (
     <Box>
