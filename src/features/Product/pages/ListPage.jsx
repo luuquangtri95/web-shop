@@ -10,6 +10,7 @@ import ProductList from '../components/ProductList'
 import { Pagination } from '@material-ui/lab'
 import ProductSort from '../components/ProductSort'
 import ProductFilter from '../components/ProductFilter'
+import FilterViewer from '../components/FilterViewer'
 
 ListPage.propTypes = {}
 
@@ -82,20 +83,27 @@ function ListPage(props) {
     }))
   }
 
+  const handleViewerChange = (newFilters) => {
+    setFilters(newFilters)
+  }
+
+  console.log(filters)
   return (
     <Box>
       <Container>
         <Grid container spacing={1}>
           <Grid item className={classes.left}>
+            {/* filter (price, category...vv)*/}
             <Paper elevation={0}>
               <ProductFilter filters={filters} onChange={handleFilterChange} />
             </Paper>
           </Grid>
 
           <Grid item className={classes.right}>
+            {/* list page: re-render when state filters changed */}
             <Paper elevation={0}>
               <ProductSort currentSort={filters._sort} onChange={handleSortChange} />
-
+              <FilterViewer filters={filters} onChange={handleViewerChange} />
               {loading ? <ProductSkeletonList length={9} /> : <ProductList data={productList} />}
 
               <Box className={classes.pagination}>

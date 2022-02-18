@@ -51,8 +51,10 @@ function FilterByCategory({ onChange }) {
     })()
   }, [])
 
+  console.log(categoryList)
+
   const handleCategoryList = (category) => {
-    if (onChange) onChange(category.id)
+    if (onChange) onChange(category)
   }
 
   return (

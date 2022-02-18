@@ -12,14 +12,24 @@ FilterByPrice.defaultProps = {
 
 const useStyle = makeStyles((theme) => ({
   root: {
+    borderTop: `1px solid ${theme.palette.grey[300]}`,
     padding: theme.spacing(2),
   },
   salePrice: {
     display: 'flex',
+    flexFlow: 'row nowrap',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: theme.spacing(2),
     marginTop: theme.spacing(2),
+
+    '& > span': {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+    },
+  },
+  resetButton: {
+    marginBottom: theme.spacing(2),
   },
 }))
 
@@ -39,13 +49,20 @@ function FilterByPrice({ onChange }) {
     }))
   }
 
+  const handleResetPrice = () => {
+    setValues({
+      salePrice_gte: 0,
+      salePrice_lte: 0,
+    })
+  }
+
   const handleSubmit = () => {
     if (onChange) onChange(values)
   }
 
   return (
     <Box className={classes.root}>
-      <Typography variant="subtitle2">KHOẢNG GIÁ</Typography>
+      <Typography variant="subtitle2">CHỌN KHOẢNG GIÁ</Typography>
 
       <Box className={classes.salePrice}>
         <TextField
@@ -57,7 +74,7 @@ function FilterByPrice({ onChange }) {
           value={values.salePrice_gte}
           onChange={handleChange}
         />
-        <span>-</span>
+        <span> - </span>
         <TextField
           variant="outlined"
           label="Đến"
@@ -69,7 +86,18 @@ function FilterByPrice({ onChange }) {
         />
       </Box>
 
-      <Button variant="outlined" color="primary" onClick={handleSubmit}>
+      <Button
+        className={classes.resetButton}
+        variant="outlined"
+        color="primary"
+        size="small"
+        onClick={handleResetPrice}
+        marginBottom={2}
+      >
+        Đặt Lại
+      </Button>
+      <br />
+      <Button variant="outlined" color="primary" size="small" onClick={handleSubmit}>
         Áp Dụng
       </Button>
     </Box>
