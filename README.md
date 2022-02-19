@@ -1,3 +1,8 @@
+Run project:
+
+- Step 1: npm i (yarn add)
+- Step 2: npm start
+
 ```js
 const filters = {
   salePrice_lte: '',
